@@ -1,0 +1,235 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6EDE5BDE134B11D6000E4AEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDE5BDD134B11D6000E4AEC /* Foundation.framework */; };
+		6EDE5BE1134B11D6000E4AEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5BE0134B11D6000E4AEC /* main.m */; };
+		6EDE5BE5134B11D6000E4AEC /* plsync.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6EDE5BE4134B11D6000E4AEC /* plsync.1 */; };
+		6EDE5BED134B11F2000E4AEC /* PLSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5BEC134B11F2000E4AEC /* PLSync.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6EDE5BD7134B11D6000E4AEC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				6EDE5BE5134B11D6000E4AEC /* plsync.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6EDE5BD9134B11D6000E4AEC /* plsync */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = plsync; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EDE5BDD134B11D6000E4AEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6EDE5BE0134B11D6000E4AEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6EDE5BE3134B11D6000E4AEC /* plsync-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "plsync-Prefix.pch"; sourceTree = "<group>"; };
+		6EDE5BE4134B11D6000E4AEC /* plsync.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = plsync.1; sourceTree = "<group>"; };
+		6EDE5BEB134B11F2000E4AEC /* PLSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLSync.h; sourceTree = "<group>"; };
+		6EDE5BEC134B11F2000E4AEC /* PLSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSync.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6EDE5BD6134B11D6000E4AEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EDE5BDE134B11D6000E4AEC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6EDE5BCE134B11D5000E4AEC = {
+			isa = PBXGroup;
+			children = (
+				6EDE5BDF134B11D6000E4AEC /* plsync */,
+				6EDE5BDC134B11D6000E4AEC /* Frameworks */,
+				6EDE5BDA134B11D6000E4AEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6EDE5BDA134B11D6000E4AEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE5BD9134B11D6000E4AEC /* plsync */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6EDE5BDC134B11D6000E4AEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE5BDD134B11D6000E4AEC /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EDE5BDF134B11D6000E4AEC /* plsync */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE5BE0134B11D6000E4AEC /* main.m */,
+				6EDE5BEB134B11F2000E4AEC /* PLSync.h */,
+				6EDE5BEC134B11F2000E4AEC /* PLSync.m */,
+				6EDE5BE4134B11D6000E4AEC /* plsync.1 */,
+				6EDE5BE2134B11D6000E4AEC /* Supporting Files */,
+			);
+			path = plsync;
+			sourceTree = "<group>";
+		};
+		6EDE5BE2134B11D6000E4AEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6EDE5BE3134B11D6000E4AEC /* plsync-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6EDE5BD8134B11D6000E4AEC /* plsync */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EDE5BE8134B11D6000E4AEC /* Build configuration list for PBXNativeTarget "plsync" */;
+			buildPhases = (
+				6EDE5BD5134B11D6000E4AEC /* Sources */,
+				6EDE5BD6134B11D6000E4AEC /* Frameworks */,
+				6EDE5BD7134B11D6000E4AEC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = plsync;
+			productName = plsync;
+			productReference = 6EDE5BD9134B11D6000E4AEC /* plsync */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6EDE5BD0134B11D5000E4AEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "-";
+			};
+			buildConfigurationList = 6EDE5BD3134B11D5000E4AEC /* Build configuration list for PBXProject "plsync" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6EDE5BCE134B11D5000E4AEC;
+			productRefGroup = 6EDE5BDA134B11D6000E4AEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6EDE5BD8134B11D6000E4AEC /* plsync */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6EDE5BD5134B11D6000E4AEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EDE5BE1134B11D6000E4AEC /* main.m in Sources */,
+				6EDE5BED134B11F2000E4AEC /* PLSync.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6EDE5BE6134B11D6000E4AEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6EDE5BE7134B11D6000E4AEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6EDE5BE9134B11D6000E4AEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "plsync/plsync-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6EDE5BEA134B11D6000E4AEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "plsync/plsync-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6EDE5BD3134B11D5000E4AEC /* Build configuration list for PBXProject "plsync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EDE5BE6134B11D6000E4AEC /* Debug */,
+				6EDE5BE7134B11D6000E4AEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EDE5BE8134B11D6000E4AEC /* Build configuration list for PBXNativeTarget "plsync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EDE5BE9134B11D6000E4AEC /* Debug */,
+				6EDE5BEA134B11D6000E4AEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6EDE5BD0134B11D5000E4AEC /* Project object */;
+}
