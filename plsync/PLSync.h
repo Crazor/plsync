@@ -19,14 +19,14 @@
 
 #import <Foundation/Foundation.h>
 
-static NSMutableArray *ruleFiles;
+static NSMutableArray *extractionRuleFiles;
 
 @interface PLSync : NSObject {
     
 }
 
-+ (void)loadRules;
-+ (void)executeRuleFiles;
-+ (void)executeRuleFile: (NSDictionary *)ruleFile;
++ (void)loadExtractionRuleFiles;
++ (void)executeExtractionRuleFiles;
++ (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
 
 @end

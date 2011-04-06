@@ -21,12 +21,12 @@
 
 @implementation PLSync
 
-+ (void)loadRules
++ (void)loadExtractionRuleFiles
 {   
     NSString *rulesDir = [NSHomeDirectory() stringByAppendingPathComponent:@".plsync/rules"];
     NSArray *ruleFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rulesDir error:NULL];
 
-    ruleFiles = [NSMutableArray arrayWithCapacity:[ruleFileList count]];
+    extractionRuleFiles = [NSMutableArray arrayWithCapacity:[ruleFileList count]];
     
     for (NSString *file in ruleFileList)
     {
@@ -37,36 +37,36 @@
         NSDictionary *rules = [NSDictionary dictionaryWithContentsOfFile:[rulesDir stringByAppendingPathComponent:file]];
         if (!rules)
         {
-            NSLog(@"Error! File %@ is not a valid plist.", file);
+            NSLog(@"    Error! File %@ is not a valid plist.", file);
             continue;
         }
-        [ruleFiles addObject:rules];
+        [extractionRuleFiles addObject:rules];
     }
 }
 
-+ (void)executeRuleFiles
++ (void)executeExtractionRuleFiles
 {
-    for (NSDictionary *ruleFile in ruleFiles)
+    for (NSDictionary *ruleFile in extractionRuleFiles)
     {
-        [PLSync executeRuleFile:ruleFile];
+        [PLSync executeExtractionRuleFile:ruleFile];
     }
 }
 
-+ (void)executeRuleFile: (NSDictionary *)ruleFile
++ (void)executeExtractionRuleFile: (NSDictionary *)ruleFile
 {
     for (NSDictionary *rule in [ruleFile objectForKey:@"Rules"])
     {
         NSString *fileName = [rule objectForKey:@"FileName"];
         if (!fileName)
         {
-            NSLog(@"Error: No file name specified.");
+            NSLog(@"    Error: No file name specified.");
             continue;
         }
         
         NSArray *whiteList = [rule objectForKey:@"WhiteList"];
         if (!whiteList)
         {
-            NSLog(@"Error: No WhiteList specified.");
+            NSLog(@"    Error: No WhiteList specified.");
             continue;
         }
         
@@ -74,7 +74,7 @@
         NSDictionary *file = [NSDictionary dictionaryWithContentsOfFile:[fileName stringByExpandingTildeInPath]];
         if (!file)
         {
-            NSLog(@"Error! File %@ is not a valid plist.", fileName);
+            NSLog(@"    Error! File is not a valid plist.");
             return;
         }
         
