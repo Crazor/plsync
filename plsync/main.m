@@ -26,7 +26,6 @@ int main (int argc, const char * argv[])
 
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-    [PLSync loadExtractionRuleFiles];
     [PLSync executeExtractionRuleFiles];
     
     [pool drain];

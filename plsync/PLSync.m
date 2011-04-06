@@ -21,12 +21,10 @@
 
 @implementation PLSync
 
-+ (void)loadExtractionRuleFiles
++ (void)executeExtractionRuleFiles
 {   
     NSString *rulesDir = [NSHomeDirectory() stringByAppendingPathComponent:@".plsync/rules"];
     NSArray *ruleFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rulesDir error:NULL];
-
-    extractionRuleFiles = [NSMutableArray arrayWithCapacity:[ruleFileList count]];
     
     for (NSString *file in ruleFileList)
     {
@@ -40,15 +38,7 @@
             NSLog(@"    Error! File %@ is not a valid plist.", file);
             continue;
         }
-        [extractionRuleFiles addObject:rules];
-    }
-}
-
-+ (void)executeExtractionRuleFiles
-{
-    for (NSDictionary *ruleFile in extractionRuleFiles)
-    {
-        [PLSync executeExtractionRuleFile:ruleFile];
+        [PLSync executeExtractionRuleFile:rules];
     }
 }
 
