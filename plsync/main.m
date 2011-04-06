@@ -23,12 +23,28 @@
 
 int main (int argc, const char * argv[])
 {
-
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-    [PLSync executeExtractionRuleFiles];
+    NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+
+    if ([arguments count] == 1)
+    {
+        usage();
+    }
+    else
+    {
+        NSString *command = [arguments objectAtIndex:1];
+    
+        if ([command isEqualToString:@"extract"])
+            [PLSync executeExtractionRuleFiles];
+        else
+            NSLog(@"Unknown command \"%@\"", command);
+    }
     
     [pool drain];
     return 0;
 }
 
+void usage()
+{
+}
