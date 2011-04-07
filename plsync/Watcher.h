@@ -21,6 +21,7 @@
 #import "UKFileWatcher.h"
 
 @interface Watcher : NSObject {
+    NSMutableDictionary *watchedFiles;
 @private
     
 }

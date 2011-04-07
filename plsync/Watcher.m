@@ -39,18 +39,32 @@
 
 - (void)watch
 {
+    
     UKKQueue *fileWatcher = [UKKQueue sharedFileWatcher];
     [fileWatcher setDelegate:self];
     
-    NSString *watchDir = [@"~/.plsync/temp" stringByExpandingTildeInPath];
-    NSArray *watchFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchDir    error:NULL];
+    NSString *watchDir = [@"~/Library/Preferences" stringByExpandingTildeInPath];
+    Log(@"Watching %@", watchDir);
+    
+    NSArray *watchFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchDir error:NULL];
+    
+    watchedFiles = [NSMutableDictionary dictionaryWithCapacity:[watchFileList count]];
     
     [fileWatcher addPath:watchDir];
     
     for (NSString *file in watchFileList)
     {
-        Log(@"Watching File %@", [watchDir stringByAppendingPathComponent:file]);
-        [fileWatcher addPath:[watchDir stringByAppendingPathComponent:file]];
+        if (![file hasSuffix:@".plist"])
+            continue;
+        
+        NSString *fileName = [watchDir stringByAppendingPathComponent:file];
+        NSDictionary *fileContents = [NSDictionary dictionaryWithContentsOfFile:fileName];
+        
+        if (fileContents)
+        {
+            [watchedFiles setObject:fileContents forKey:fileName];
+            [fileWatcher addPath:fileName];
+        }
     }
     
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
