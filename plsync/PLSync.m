@@ -18,10 +18,11 @@
  */
 
 #import "PLSync.h"
+#import "UKKQueue.h"
 
 @implementation PLSync
 
-+ (void)executeExtractionRuleFiles
+- (void)executeExtractionRuleFiles
 {   
     NSString *rulesDir = [NSHomeDirectory() stringByAppendingPathComponent:@".plsync/rules"];
     NSArray *ruleFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rulesDir error:NULL];
@@ -38,11 +39,11 @@
             Log(@"    Error! File %@ is not a valid plist.", file);
             continue;
         }
-        [PLSync executeExtractionRuleFile:rules];
+        [self executeExtractionRuleFile:rules];
     }
 }
 
-+ (void)executeExtractionRuleFile: (NSDictionary *)ruleFile
+- (void)executeExtractionRuleFile: (NSDictionary *)ruleFile
 {
     for (NSDictionary *rule in [ruleFile objectForKey:@"Rules"])
     {
@@ -89,7 +90,7 @@
     }
 }
 
-+ (void)applySettingsFiles
+- (void)applySettingsFiles
 {
     NSString *settingsDir = [@"~/.plsync/plists" stringByExpandingTildeInPath];
     NSArray *settingsFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:settingsDir error:NULL];
@@ -106,11 +107,11 @@
             Log(@"    Error! File %@ is not a valid plist.", file);
             continue;
         }
-        [PLSync applySettingsFile:settings];
+        [self applySettingsFile:settings];
     }
 }
 
-+ (void)applySettingsFile: (NSDictionary *)settingsFile
+- (void)applySettingsFile: (NSDictionary *)settingsFile
 {
     NSString *fileName = [settingsFile objectForKey:@"FileName"];
     if (!fileName)
@@ -143,6 +144,31 @@
     
     if (![file writeToFile:[fileName stringByExpandingTildeInPath] atomically:YES])
         Log(@"Error writing file %@", fileName);
+}
+
+- (void)watch
+{
+    UKKQueue *fileWatcher = [UKKQueue sharedFileWatcher];
+    [fileWatcher setDelegate:self];
+    
+    NSString *watchDir = [@"~/.plsync/temp" stringByExpandingTildeInPath];
+    NSArray *watchFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchDir    error:NULL];
+    
+    [fileWatcher addPath:watchDir];
+    
+    for (NSString *file in watchFileList)
+    {
+        Log(@"Watching File %@", [watchDir stringByAppendingPathComponent:file]);
+        [fileWatcher addPath:[watchDir stringByAppendingPathComponent:file]];
+    }
+    
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    [runLoop run];
+}
+
+- (void)watcher: (id<UKFileWatcher>)kq receivedNotification: (NSString*)nm forPath: (NSString*)fpath
+{
+    Log(@"receivedNotification: %@ forPath: %@", nm, fpath);
 }
 
 @end

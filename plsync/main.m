@@ -27,6 +27,8 @@ int main (int argc, const char * argv[])
 
     NSArray *arguments = [[NSProcessInfo processInfo] arguments];
 
+    PLSync *plsync = [[PLSync alloc] init];
+    
     if ([arguments count] == 1)
     {
         usage();
@@ -36,9 +38,11 @@ int main (int argc, const char * argv[])
         NSString *command = [arguments objectAtIndex:1];
     
         if ([command isEqualToString:@"extract"])
-            [PLSync executeExtractionRuleFiles];
+            [plsync executeExtractionRuleFiles];
         else if ([command isEqualToString:@"apply"])
-            [PLSync applySettingsFiles];
+            [plsync applySettingsFiles];
+        else if ([command isEqualToString:@"watch"])
+            [plsync watch];
         else
             Log(@"Unknown command \"%@\"", command);
     }
@@ -49,5 +53,5 @@ int main (int argc, const char * argv[])
 
 void usage()
 {
-    Log(@"Usage: plsync [extract|apply]");
+    Log(@"Usage: plsync [extract|apply|watch]");
 }

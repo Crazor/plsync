@@ -17,14 +17,20 @@
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface PLSync : NSObject {
+#import "UKFileWatcher.h"
+
+@interface PLSync : NSObject
+{
     
 }
 
-+ (void)executeExtractionRuleFiles;
-+ (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
+- (void)executeExtractionRuleFiles;
+- (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
 
-+ (void)applySettingsFiles;
-+ (void)applySettingsFile: (NSDictionary *)settingsFile;
+- (void)applySettingsFiles;
+- (void)applySettingsFile: (NSDictionary *)settingsFile;
+
+- (void)watch;
+- (void)watcher: (id<UKFileWatcher>)kq receivedNotification: (NSString*)nm forPath: (NSString*)fpath;
 
 @end
