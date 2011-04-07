@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6E0B651A134DC9C8005A553C /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B6519134DC9C8005A553C /* Log.m */; };
+		6E0B6525134DD808005A553C /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B651D134DD808005A553C /* UKFileWatcher.m */; };
+		6E0B6526134DD808005A553C /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B651F134DD808005A553C /* UKFNSubscribeFileWatcher.m */; };
+		6E0B6527134DD808005A553C /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B6522134DD808005A553C /* UKKQueue.m */; };
+		6E0B6528134DD808005A553C /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B6524134DD808005A553C /* UKMainThreadProxy.m */; };
+		6E0B652A134DD8FD005A553C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0B6529134DD8FD005A553C /* CoreServices.framework */; };
+		6E0B652C134DD957005A553C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0B652B134DD957005A553C /* AppKit.framework */; };
 		6EDE5BDE134B11D6000E4AEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDE5BDD134B11D6000E4AEC /* Foundation.framework */; };
 		6EDE5BE1134B11D6000E4AEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5BE0134B11D6000E4AEC /* main.m */; };
 		6EDE5BE5134B11D6000E4AEC /* plsync.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6EDE5BE4134B11D6000E4AEC /* plsync.1 */; };
@@ -30,6 +36,17 @@
 /* Begin PBXFileReference section */
 		6E0B6517134DC6CA005A553C /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		6E0B6519134DC9C8005A553C /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		6E0B651C134DD808005A553C /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFileWatcher.h; sourceTree = "<group>"; };
+		6E0B651D134DD808005A553C /* UKFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFileWatcher.m; sourceTree = "<group>"; };
+		6E0B651E134DD808005A553C /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
+		6E0B651F134DD808005A553C /* UKFNSubscribeFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFNSubscribeFileWatcher.m; sourceTree = "<group>"; };
+		6E0B6520134DD808005A553C /* UKKQueue Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UKKQueue Readme.txt"; sourceTree = "<group>"; };
+		6E0B6521134DD808005A553C /* UKKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKKQueue.h; sourceTree = "<group>"; };
+		6E0B6522134DD808005A553C /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
+		6E0B6523134DD808005A553C /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
+		6E0B6524134DD808005A553C /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
+		6E0B6529134DD8FD005A553C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		6E0B652B134DD957005A553C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		6EDE5BD9134B11D6000E4AEC /* plsync */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = plsync; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EDE5BDD134B11D6000E4AEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EDE5BE0134B11D6000E4AEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,12 +62,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EDE5BDE134B11D6000E4AEC /* Foundation.framework in Frameworks */,
+				6E0B652A134DD8FD005A553C /* CoreServices.framework in Frameworks */,
+				6E0B652C134DD957005A553C /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E0B651B134DD808005A553C /* UKKQueue */ = {
+			isa = PBXGroup;
+			children = (
+				6E0B651C134DD808005A553C /* UKFileWatcher.h */,
+				6E0B651D134DD808005A553C /* UKFileWatcher.m */,
+				6E0B651E134DD808005A553C /* UKFNSubscribeFileWatcher.h */,
+				6E0B651F134DD808005A553C /* UKFNSubscribeFileWatcher.m */,
+				6E0B6520134DD808005A553C /* UKKQueue Readme.txt */,
+				6E0B6521134DD808005A553C /* UKKQueue.h */,
+				6E0B6522134DD808005A553C /* UKKQueue.m */,
+				6E0B6523134DD808005A553C /* UKMainThreadProxy.h */,
+				6E0B6524134DD808005A553C /* UKMainThreadProxy.m */,
+			);
+			path = UKKQueue;
+			sourceTree = "<group>";
+		};
 		6EDE5BCE134B11D5000E4AEC = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +106,8 @@
 		6EDE5BDC134B11D6000E4AEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E0B652B134DD957005A553C /* AppKit.framework */,
+				6E0B6529134DD8FD005A553C /* CoreServices.framework */,
 				6EDE5BDD134B11D6000E4AEC /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -84,6 +121,7 @@
 				6EDE5BEC134B11F2000E4AEC /* PLSync.m */,
 				6E0B6517134DC6CA005A553C /* Log.h */,
 				6E0B6519134DC9C8005A553C /* Log.m */,
+				6E0B651B134DD808005A553C /* UKKQueue */,
 				6EDE5BE4134B11D6000E4AEC /* plsync.1 */,
 				6EDE5BE2134B11D6000E4AEC /* Supporting Files */,
 			);
@@ -151,6 +189,10 @@
 				6EDE5BE1134B11D6000E4AEC /* main.m in Sources */,
 				6EDE5BED134B11F2000E4AEC /* PLSync.m in Sources */,
 				6E0B651A134DC9C8005A553C /* Log.m in Sources */,
+				6E0B6525134DD808005A553C /* UKFileWatcher.m in Sources */,
+				6E0B6526134DD808005A553C /* UKFNSubscribeFileWatcher.m in Sources */,
+				6E0B6527134DD808005A553C /* UKKQueue.m in Sources */,
+				6E0B6528134DD808005A553C /* UKMainThreadProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
