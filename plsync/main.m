@@ -21,6 +21,8 @@
 
 #import "PLSync.h"
 
+void usage();
+
 int main (int argc, const char * argv[])
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
@@ -37,6 +39,8 @@ int main (int argc, const char * argv[])
     
         if ([command isEqualToString:@"extract"])
             [PLSync executeExtractionRuleFiles];
+        else if ([command isEqualToString:@"apply"])
+            [PLSync applySettingsFiles];
         else
             NSLog(@"Unknown command \"%@\"", command);
     }
@@ -47,4 +51,5 @@ int main (int argc, const char * argv[])
 
 void usage()
 {
+    NSLog(@"Usage: plsync [extract|apply]");
 }

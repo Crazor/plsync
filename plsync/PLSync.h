@@ -26,4 +26,7 @@
 + (void)executeExtractionRuleFiles;
 + (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
 
++ (void)applySettingsFiles;
++ (void)applySettingsFile: (NSDictionary *)settingsFile;
+
 @end

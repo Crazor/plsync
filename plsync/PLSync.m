@@ -69,18 +69,80 @@
         }
         
         NSMutableDictionary *newFile = [NSMutableDictionary dictionaryWithCapacity:[file count]];
+        [newFile setObject:fileName forKey:@"FileName"];
+        
+        NSMutableDictionary *newSettings = [NSMutableDictionary dictionaryWithCapacity:[file count]];
+        
         for (id element in file)
         {
             if ([whiteList containsObject:element])
             {
-                [newFile setObject:[file objectForKey:element] forKey:element];
+                [newSettings setObject:[file objectForKey:element] forKey:element];
             }
         }
+        
+        [newFile setObject:newSettings forKey:@"Settings"];
         
         NSString *newFileName = [@"~/.plsync/plists/" stringByAppendingString:[fileName lastPathComponent]];
         if (![newFile writeToFile:[newFileName stringByExpandingTildeInPath] atomically:YES])
             NSLog(@"Error writing file %@", newFileName);
     }
+}
+
++ (void)applySettingsFiles
+{
+    NSString *settingsDir = [@"~/.plsync/plists" stringByExpandingTildeInPath];
+    NSArray *settingsFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:settingsDir error:NULL];
+    
+    for (NSString *file in settingsFileList)
+    {
+        if (![file hasSuffix:@".plist"])
+            continue;
+        
+        NSLog(@"Loading settings from %@", file);
+        NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsDir stringByAppendingPathComponent:file]];
+        if (!settings)
+        {
+            NSLog(@"    Error! File %@ is not a valid plist.", file);
+            continue;
+        }
+        [PLSync applySettingsFile:settings];
+    }
+}
+
++ (void)applySettingsFile: (NSDictionary *)settingsFile
+{
+    NSString *fileName = [settingsFile objectForKey:@"FileName"];
+    if (!fileName)
+    {
+        NSLog(@"    Error: No file name specified.");
+        //continue;
+        return;
+    }
+
+    NSDictionary *settings = [settingsFile objectForKey:@"Settings"];
+    if (!settings)
+    {
+        NSLog(@"    Error: No settings specified.");
+        //continue;
+        return;
+    }
+    
+    NSLog(@"Processing file %@", fileName);
+    NSMutableDictionary *file = [NSMutableDictionary dictionaryWithContentsOfFile:[fileName stringByExpandingTildeInPath]];
+    if (!file)
+    {
+        NSLog(@"    Error! File is not a valid plist.");
+        return;
+    }
+    
+    for (id element in settings)
+    {
+        [file setObject:[settings objectForKey:element] forKey:element];
+    }
+    
+    if (![file writeToFile:[fileName stringByExpandingTildeInPath] atomically:YES])
+        NSLog(@"Error writing file %@", fileName);
 }
 
 @end
