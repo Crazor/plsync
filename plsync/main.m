@@ -17,8 +17,6 @@
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
 #import "PLSync.h"
 
 void usage();
@@ -42,7 +40,7 @@ int main (int argc, const char * argv[])
         else if ([command isEqualToString:@"apply"])
             [PLSync applySettingsFiles];
         else
-            NSLog(@"Unknown command \"%@\"", command);
+            Log(@"Unknown command \"%@\"", command);
     }
     
     [pool drain];
@@ -51,5 +49,5 @@ int main (int argc, const char * argv[])
 
 void usage()
 {
-    NSLog(@"Usage: plsync [extract|apply]");
+    Log(@"Usage: plsync [extract|apply]");
 }

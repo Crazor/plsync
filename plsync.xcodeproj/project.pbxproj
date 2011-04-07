@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E0B651A134DC9C8005A553C /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B6519134DC9C8005A553C /* Log.m */; };
 		6EDE5BDE134B11D6000E4AEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDE5BDD134B11D6000E4AEC /* Foundation.framework */; };
 		6EDE5BE1134B11D6000E4AEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5BE0134B11D6000E4AEC /* main.m */; };
 		6EDE5BE5134B11D6000E4AEC /* plsync.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6EDE5BE4134B11D6000E4AEC /* plsync.1 */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6E0B6517134DC6CA005A553C /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		6E0B6519134DC9C8005A553C /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		6EDE5BD9134B11D6000E4AEC /* plsync */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = plsync; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EDE5BDD134B11D6000E4AEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EDE5BE0134B11D6000E4AEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				6EDE5BE0134B11D6000E4AEC /* main.m */,
 				6EDE5BEB134B11F2000E4AEC /* PLSync.h */,
 				6EDE5BEC134B11F2000E4AEC /* PLSync.m */,
+				6E0B6517134DC6CA005A553C /* Log.h */,
+				6E0B6519134DC9C8005A553C /* Log.m */,
 				6EDE5BE4134B11D6000E4AEC /* plsync.1 */,
 				6EDE5BE2134B11D6000E4AEC /* Supporting Files */,
 			);
@@ -145,6 +150,7 @@
 			files = (
 				6EDE5BE1134B11D6000E4AEC /* main.m in Sources */,
 				6EDE5BED134B11F2000E4AEC /* PLSync.m in Sources */,
+				6E0B651A134DC9C8005A553C /* Log.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +234,7 @@
 				6EDE5BEA134B11D6000E4AEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

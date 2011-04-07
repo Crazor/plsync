@@ -31,11 +31,11 @@
         if (![file hasSuffix:@".plist"])
             continue;
         
-        NSLog(@"Loading rules from %@", file);
+        Log(@"Loading rules from %@", file);
         NSDictionary *rules = [NSDictionary dictionaryWithContentsOfFile:[rulesDir stringByAppendingPathComponent:file]];
         if (!rules)
         {
-            NSLog(@"    Error! File %@ is not a valid plist.", file);
+            Log(@"    Error! File %@ is not a valid plist.", file);
             continue;
         }
         [PLSync executeExtractionRuleFile:rules];
@@ -49,22 +49,22 @@
         NSString *fileName = [rule objectForKey:@"FileName"];
         if (!fileName)
         {
-            NSLog(@"    Error: No file name specified.");
+            Log(@"    Error: No file name specified.");
             continue;
         }
         
         NSArray *whiteList = [rule objectForKey:@"WhiteList"];
         if (!whiteList)
         {
-            NSLog(@"    Error: No WhiteList specified.");
+            Log(@"    Error: No WhiteList specified.");
             continue;
         }
         
-        NSLog(@"Processing file %@", fileName);
+        Log(@"Processing file %@", fileName);
         NSDictionary *file = [NSDictionary dictionaryWithContentsOfFile:[fileName stringByExpandingTildeInPath]];
         if (!file)
         {
-            NSLog(@"    Error! File is not a valid plist.");
+            Log(@"    Error! File is not a valid plist.");
             return;
         }
         
@@ -85,7 +85,7 @@
         
         NSString *newFileName = [@"~/.plsync/plists/" stringByAppendingString:[fileName lastPathComponent]];
         if (![newFile writeToFile:[newFileName stringByExpandingTildeInPath] atomically:YES])
-            NSLog(@"Error writing file %@", newFileName);
+            Log(@"Error writing file %@", newFileName);
     }
 }
 
@@ -99,11 +99,11 @@
         if (![file hasSuffix:@".plist"])
             continue;
         
-        NSLog(@"Loading settings from %@", file);
+        Log(@"Loading settings from %@", file);
         NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsDir stringByAppendingPathComponent:file]];
         if (!settings)
         {
-            NSLog(@"    Error! File %@ is not a valid plist.", file);
+            Log(@"    Error! File %@ is not a valid plist.", file);
             continue;
         }
         [PLSync applySettingsFile:settings];
@@ -115,7 +115,7 @@
     NSString *fileName = [settingsFile objectForKey:@"FileName"];
     if (!fileName)
     {
-        NSLog(@"    Error: No file name specified.");
+        Log(@"    Error: No file name specified.");
         //continue;
         return;
     }
@@ -123,16 +123,16 @@
     NSDictionary *settings = [settingsFile objectForKey:@"Settings"];
     if (!settings)
     {
-        NSLog(@"    Error: No settings specified.");
+        Log(@"    Error: No settings specified.");
         //continue;
         return;
     }
     
-    NSLog(@"Processing file %@", fileName);
+    Log(@"Processing file %@", fileName);
     NSMutableDictionary *file = [NSMutableDictionary dictionaryWithContentsOfFile:[fileName stringByExpandingTildeInPath]];
     if (!file)
     {
-        NSLog(@"    Error! File is not a valid plist.");
+        Log(@"    Error! File is not a valid plist.");
         return;
     }
     
@@ -142,7 +142,7 @@
     }
     
     if (![file writeToFile:[fileName stringByExpandingTildeInPath] atomically:YES])
-        NSLog(@"Error writing file %@", fileName);
+        Log(@"Error writing file %@", fileName);
 }
 
 @end

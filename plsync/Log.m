@@ -17,14 +17,16 @@
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface PLSync : NSObject {
+#import "Log.h"
+
+// Taken from bbum at http://stackoverflow.com/questions/2216266/printing-an-nsstring/2217515#2217515
+void Log(NSString *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    NSString *formattedString = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
     
+    [(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:[[formattedString stringByAppendingString:@"\n"] dataUsingEncoding:NSNEXTSTEPStringEncoding]];
+    [formattedString release];
 }
-
-+ (void)executeExtractionRuleFiles;
-+ (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
-
-+ (void)applySettingsFiles;
-+ (void)applySettingsFile: (NSDictionary *)settingsFile;
-
-@end
