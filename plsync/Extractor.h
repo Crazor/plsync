@@ -16,4 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
-void Log(NSString *format, ...);
+
+#import <Foundation/Foundation.h>
+
+
+@interface Extractor : NSObject {
+@private
+    
+}
+
+- (void)executeExtractionRuleFiles;
+- (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
+
+@end

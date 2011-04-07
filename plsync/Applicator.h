@@ -3,7 +3,7 @@
  *
  * Copyright 2011 Crazor <crazor@gmail.com>
  *
- * Tile is free software: you can redistribute it and/or modify
+ * plsync is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -17,20 +17,15 @@
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "UKFileWatcher.h"
+#import <Foundation/Foundation.h>
 
-@interface PLSync : NSObject
-{
+
+@interface Applicator : NSObject {
+@private
     
 }
 
-- (void)executeExtractionRuleFiles;
-- (void)executeExtractionRuleFile: (NSDictionary *)ruleFile;
-
 - (void)applySettingsFiles;
 - (void)applySettingsFile: (NSDictionary *)settingsFile;
-
-- (void)watch;
-- (void)watcher: (id<UKFileWatcher>)kq receivedNotification: (NSString*)nm forPath: (NSString*)fpath;
 
 @end

@@ -14,10 +14,12 @@
 		6E0B6528134DD808005A553C /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B6524134DD808005A553C /* UKMainThreadProxy.m */; };
 		6E0B652A134DD8FD005A553C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0B6529134DD8FD005A553C /* CoreServices.framework */; };
 		6E0B652C134DD957005A553C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0B652B134DD957005A553C /* AppKit.framework */; };
+		6ED7CF1B134E1AB2008C040F /* Extractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7CF1A134E1AB2008C040F /* Extractor.m */; };
+		6ED7CF1F134E1AB9008C040F /* Applicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7CF1E134E1AB8008C040F /* Applicator.m */; };
+		6ED7CF28134E1D05008C040F /* Watcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7CF27134E1D05008C040F /* Watcher.m */; };
 		6EDE5BDE134B11D6000E4AEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDE5BDD134B11D6000E4AEC /* Foundation.framework */; };
 		6EDE5BE1134B11D6000E4AEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5BE0134B11D6000E4AEC /* main.m */; };
 		6EDE5BE5134B11D6000E4AEC /* plsync.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6EDE5BE4134B11D6000E4AEC /* plsync.1 */; };
-		6EDE5BED134B11F2000E4AEC /* PLSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5BEC134B11F2000E4AEC /* PLSync.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,13 +49,17 @@
 		6E0B6524134DD808005A553C /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
 		6E0B6529134DD8FD005A553C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		6E0B652B134DD957005A553C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		6ED7CF19134E1AB2008C040F /* Extractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Extractor.h; sourceTree = "<group>"; };
+		6ED7CF1A134E1AB2008C040F /* Extractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Extractor.m; sourceTree = "<group>"; };
+		6ED7CF1D134E1AB8008C040F /* Applicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Applicator.h; sourceTree = "<group>"; };
+		6ED7CF1E134E1AB8008C040F /* Applicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Applicator.m; sourceTree = "<group>"; };
+		6ED7CF26134E1D05008C040F /* Watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Watcher.h; sourceTree = "<group>"; };
+		6ED7CF27134E1D05008C040F /* Watcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Watcher.m; sourceTree = "<group>"; };
 		6EDE5BD9134B11D6000E4AEC /* plsync */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = plsync; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EDE5BDD134B11D6000E4AEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EDE5BE0134B11D6000E4AEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6EDE5BE3134B11D6000E4AEC /* plsync-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "plsync-Prefix.pch"; sourceTree = "<group>"; };
 		6EDE5BE4134B11D6000E4AEC /* plsync.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = plsync.1; sourceTree = "<group>"; };
-		6EDE5BEB134B11F2000E4AEC /* PLSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLSync.h; sourceTree = "<group>"; };
-		6EDE5BEC134B11F2000E4AEC /* PLSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSync.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +122,13 @@
 		6EDE5BDF134B11D6000E4AEC /* plsync */ = {
 			isa = PBXGroup;
 			children = (
+				6ED7CF26134E1D05008C040F /* Watcher.h */,
+				6ED7CF27134E1D05008C040F /* Watcher.m */,
 				6EDE5BE0134B11D6000E4AEC /* main.m */,
-				6EDE5BEB134B11F2000E4AEC /* PLSync.h */,
-				6EDE5BEC134B11F2000E4AEC /* PLSync.m */,
+				6ED7CF19134E1AB2008C040F /* Extractor.h */,
+				6ED7CF1D134E1AB8008C040F /* Applicator.h */,
+				6ED7CF1E134E1AB8008C040F /* Applicator.m */,
+				6ED7CF1A134E1AB2008C040F /* Extractor.m */,
 				6E0B6517134DC6CA005A553C /* Log.h */,
 				6E0B6519134DC9C8005A553C /* Log.m */,
 				6E0B651B134DD808005A553C /* UKKQueue */,
@@ -187,12 +197,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EDE5BE1134B11D6000E4AEC /* main.m in Sources */,
-				6EDE5BED134B11F2000E4AEC /* PLSync.m in Sources */,
 				6E0B651A134DC9C8005A553C /* Log.m in Sources */,
 				6E0B6525134DD808005A553C /* UKFileWatcher.m in Sources */,
 				6E0B6526134DD808005A553C /* UKFNSubscribeFileWatcher.m in Sources */,
 				6E0B6527134DD808005A553C /* UKKQueue.m in Sources */,
 				6E0B6528134DD808005A553C /* UKMainThreadProxy.m in Sources */,
+				6ED7CF1B134E1AB2008C040F /* Extractor.m in Sources */,
+				6ED7CF1F134E1AB9008C040F /* Applicator.m in Sources */,
+				6ED7CF28134E1D05008C040F /* Watcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

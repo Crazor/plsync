@@ -3,7 +3,7 @@
  *
  * Copyright 2011 Crazor <crazor@gmail.com>
  *
- * Tile is free software: you can redistribute it and/or modify
+ * plsync is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -17,7 +17,9 @@
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "PLSync.h"
+#import "Extractor.h"
+#import "Applicator.h"
+#import "Watcher.h"
 
 void usage();
 
@@ -27,8 +29,6 @@ int main (int argc, const char * argv[])
 
     NSArray *arguments = [[NSProcessInfo processInfo] arguments];
 
-    PLSync *plsync = [[PLSync alloc] init];
-    
     if ([arguments count] == 1)
     {
         usage();
@@ -38,13 +38,24 @@ int main (int argc, const char * argv[])
         NSString *command = [arguments objectAtIndex:1];
     
         if ([command isEqualToString:@"extract"])
-            [plsync executeExtractionRuleFiles];
+        {
+            Extractor *extractor = [[Extractor alloc] init];
+            [extractor executeExtractionRuleFiles];
+        }
         else if ([command isEqualToString:@"apply"])
-            [plsync applySettingsFiles];
+        {
+            Applicator *applicator = [[Applicator alloc] init];
+            [applicator applySettingsFiles];
+        }
         else if ([command isEqualToString:@"watch"])
-            [plsync watch];
+        {
+            Watcher *watcher = [[Watcher alloc] init];
+            [watcher watch];
+        }
         else
+        {
             Log(@"Unknown command \"%@\"", command);
+        }
     }
     
     [pool drain];

@@ -3,7 +3,7 @@
  *
  * Copyright 2011 Crazor <crazor@gmail.com>
  *
- * Tile is free software: you can redistribute it and/or modify
+ * plsync is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -17,10 +17,25 @@
  * along with plsync.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "PLSync.h"
-#import "UKKQueue.h"
+#import "Extractor.h"
 
-@implementation PLSync
+
+@implementation Extractor
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+}
 
 - (void)executeExtractionRuleFiles
 {   
@@ -88,87 +103,6 @@
         if (![newFile writeToFile:[newFileName stringByExpandingTildeInPath] atomically:YES])
             Log(@"Error writing file %@", newFileName);
     }
-}
-
-- (void)applySettingsFiles
-{
-    NSString *settingsDir = [@"~/.plsync/plists" stringByExpandingTildeInPath];
-    NSArray *settingsFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:settingsDir error:NULL];
-    
-    for (NSString *file in settingsFileList)
-    {
-        if (![file hasSuffix:@".plist"])
-            continue;
-        
-        Log(@"Loading settings from %@", file);
-        NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsDir stringByAppendingPathComponent:file]];
-        if (!settings)
-        {
-            Log(@"    Error! File %@ is not a valid plist.", file);
-            continue;
-        }
-        [self applySettingsFile:settings];
-    }
-}
-
-- (void)applySettingsFile: (NSDictionary *)settingsFile
-{
-    NSString *fileName = [settingsFile objectForKey:@"FileName"];
-    if (!fileName)
-    {
-        Log(@"    Error: No file name specified.");
-        //continue;
-        return;
-    }
-
-    NSDictionary *settings = [settingsFile objectForKey:@"Settings"];
-    if (!settings)
-    {
-        Log(@"    Error: No settings specified.");
-        //continue;
-        return;
-    }
-    
-    Log(@"Processing file %@", fileName);
-    NSMutableDictionary *file = [NSMutableDictionary dictionaryWithContentsOfFile:[fileName stringByExpandingTildeInPath]];
-    if (!file)
-    {
-        Log(@"    Error! File is not a valid plist.");
-        return;
-    }
-    
-    for (id element in settings)
-    {
-        [file setObject:[settings objectForKey:element] forKey:element];
-    }
-    
-    if (![file writeToFile:[fileName stringByExpandingTildeInPath] atomically:YES])
-        Log(@"Error writing file %@", fileName);
-}
-
-- (void)watch
-{
-    UKKQueue *fileWatcher = [UKKQueue sharedFileWatcher];
-    [fileWatcher setDelegate:self];
-    
-    NSString *watchDir = [@"~/.plsync/temp" stringByExpandingTildeInPath];
-    NSArray *watchFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchDir    error:NULL];
-    
-    [fileWatcher addPath:watchDir];
-    
-    for (NSString *file in watchFileList)
-    {
-        Log(@"Watching File %@", [watchDir stringByAppendingPathComponent:file]);
-        [fileWatcher addPath:[watchDir stringByAppendingPathComponent:file]];
-    }
-    
-    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    [runLoop run];
-}
-
-- (void)watcher: (id<UKFileWatcher>)kq receivedNotification: (NSString*)nm forPath: (NSString*)fpath
-{
-    Log(@"receivedNotification: %@ forPath: %@", nm, fpath);
 }
 
 @end
