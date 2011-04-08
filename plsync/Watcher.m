@@ -92,6 +92,7 @@
                 if ([[[watchedFileListWithAttributes objectForKey:fileWithPath] objectForKey:NSFileModificationDate] compare:[[[NSFileManager defaultManager] attributesOfItemAtPath:fileWithPath error:NULL] objectForKey:NSFileModificationDate]] == NSOrderedAscending)
                 {
                     Log(@"File %@ changed!", fileWithPath);
+                    [self diffDictionary:[watchedFileContents objectForKey:fileWithPath] andDictionary:[NSDictionary dictionaryWithContentsOfFile:fileWithPath]];
                 }
             }
         }
@@ -103,6 +104,20 @@
     else
     {
         Log(@"Notification: %@ File: %@", nm, fpath);
+    }
+}
+
+- (void)diffDictionary: (NSDictionary *)aDict andDictionary: (NSDictionary *)anotherDict
+{
+    if (![aDict isEqualToDictionary:anotherDict])
+    {
+        [aDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+//            Log(@"Enumerating Key %@ and Value %@",key,obj);
+            if (![[anotherDict objectForKey:key] isEqualTo:obj])
+            {
+                Log(@"Key %@ changed. Was %@, is now %@", key, obj, [anotherDict objectForKey:key]);
+            }
+        }];
     }
 }
 

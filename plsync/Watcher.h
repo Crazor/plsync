@@ -32,4 +32,6 @@
 - (void)watch;
 - (void)watcher: (id<UKFileWatcher>)kq receivedNotification: (NSString*)nm forPath: (NSString*)fpath;
 
+- (void)diffDictionary: (NSDictionary *)aDict andDictionary: (NSDictionary *)anotherDict;
+
 @end
