@@ -18,10 +18,13 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "UKFileWatcher.h"
+#import "UKKQueue.h"
 
 @interface Watcher : NSObject {
-    NSMutableDictionary *watchedFiles;
+    UKKQueue *fileWatcher;
+    NSMutableDictionary *watchedFileListWithAttributes;
+    NSMutableDictionary *watchedFileContents;
+    NSMutableArray *filesToDiff;
 @private
     
 }

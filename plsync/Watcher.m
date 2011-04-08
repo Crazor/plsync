@@ -39,31 +39,35 @@
 
 - (void)watch
 {
-    
-    UKKQueue *fileWatcher = [UKKQueue sharedFileWatcher];
+    filesToDiff = [NSMutableArray arrayWithCapacity:10];
+    fileWatcher = [UKKQueue sharedFileWatcher];
     [fileWatcher setDelegate:self];
     
-    NSString *watchDir = [@"~/Library/Preferences" stringByExpandingTildeInPath];
-    Log(@"Watching %@", watchDir);
+    NSString *watchedDir = [@"~/Library/Preferences" stringByExpandingTildeInPath];
+    Log(@"Watching %@", watchedDir);
     
-    NSArray *watchFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchDir error:NULL];
+    NSArray *watchedFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchedDir error:NULL];
+    watchedFileListWithAttributes = [NSMutableDictionary dictionaryWithCapacity:[watchedFileList count]];
+    watchedFileContents = [NSMutableDictionary dictionaryWithCapacity:[watchedFileList count]];
     
-    watchedFiles = [NSMutableDictionary dictionaryWithCapacity:[watchFileList count]];
+    [fileWatcher addPath:watchedDir];
     
-    [fileWatcher addPath:watchDir];
-    
-    for (NSString *file in watchFileList)
+    for (NSString *file in watchedFileList)
     {
+        NSString *fileWithPath = [watchedDir stringByAppendingPathComponent:file];
+        NSDictionary *fileAttribute = [[NSFileManager defaultManager] attributesOfItemAtPath:fileWithPath error:NULL];
+        [watchedFileListWithAttributes setObject:fileAttribute forKey:fileWithPath];
+        
         if (![file hasSuffix:@".plist"])
             continue;
         
-        NSString *fileName = [watchDir stringByAppendingPathComponent:file];
+        NSString *fileName = [watchedDir stringByAppendingPathComponent:file];
         NSDictionary *fileContents = [NSDictionary dictionaryWithContentsOfFile:fileName];
         
         if (fileContents)
         {
-            [watchedFiles setObject:fileContents forKey:fileName];
-            [fileWatcher addPath:fileName];
+            [watchedFileContents setObject:fileContents forKey:fileName];
+//            [fileWatcher addPath:fileName]; // only needed for events like delete.
         }
     }
     
@@ -73,7 +77,33 @@
 
 - (void)watcher: (id<UKFileWatcher>)kq receivedNotification: (NSString*)nm forPath: (NSString*)fpath
 {
-    Log(@"receivedNotification: %@ forPath: %@", nm, fpath);
+    if ([nm isEqualToString:UKFileWatcherDeleteNotification])
+    {
+        Log(@"File %@ was deleted.", fpath);
+    }
+    else if ([nm isEqualToString:UKFileWatcherWriteNotification])
+    {
+        if ([[[[NSFileManager defaultManager] attributesOfItemAtPath:fpath error:NULL] fileType] isEqualToString:NSFileTypeDirectory])
+        {
+            NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fpath error:NULL];
+            for (NSString *file in fileList)
+            {
+                NSString *fileWithPath = [fpath stringByAppendingPathComponent:file];
+                if ([[[watchedFileListWithAttributes objectForKey:fileWithPath] objectForKey:NSFileModificationDate] compare:[[[NSFileManager defaultManager] attributesOfItemAtPath:fileWithPath error:NULL] objectForKey:NSFileModificationDate]] == NSOrderedAscending)
+                {
+                    Log(@"File %@ changed!", fileWithPath);
+                }
+            }
+        }
+        else
+        {
+            Log(@"File %@ was written.", fpath);
+        }
+    }
+    else
+    {
+        Log(@"Notification: %@ File: %@", nm, fpath);
+    }
 }
 
 @end
