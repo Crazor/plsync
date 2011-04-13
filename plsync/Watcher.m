@@ -39,7 +39,16 @@
 
 - (void)watch
 {
-    filesToDiff = [NSMutableArray arrayWithCapacity:10];
+    NSDictionary *blacklistFile = [NSDictionary dictionaryWithContentsOfFile:[@"~/.plsync/blacklist.plist" stringByExpandingTildeInPath]];
+    
+    blacklistedFiles = [NSMutableArray arrayWithCapacity:[[blacklistFile objectForKey:@"BlacklistedFiles"] count]];
+    for (NSString *file in [blacklistFile objectForKey:@"BlacklistedFiles"])
+    {
+        [blacklistedFiles addObject:[file stringByExpandingTildeInPath]];
+    }
+    
+    blacklistedKeys = [blacklistFile objectForKey:@"BlacklistedKeys"];
+    
     fileWatcher = [UKKQueue sharedFileWatcher];
     [fileWatcher setDelegate:self];
     
@@ -91,8 +100,13 @@
                 NSString *fileWithPath = [fpath stringByAppendingPathComponent:file];
                 if ([[[watchedFileListWithAttributes objectForKey:fileWithPath] objectForKey:NSFileModificationDate] compare:[[[NSFileManager defaultManager] attributesOfItemAtPath:fileWithPath error:NULL] objectForKey:NSFileModificationDate]] == NSOrderedAscending)
                 {
-                    Log(@"File %@ changed!", fileWithPath);
-                    [self diffDictionary:[watchedFileContents objectForKey:fileWithPath] andDictionary:[NSDictionary dictionaryWithContentsOfFile:fileWithPath]];
+                    if (![blacklistedFiles containsObject:fileWithPath])
+                    {
+                        Log(@"File %@ changed!", fileWithPath);
+                        NSDictionary *newFile = [NSDictionary dictionaryWithContentsOfFile:fileWithPath];
+                        [self diffDictionary:[watchedFileContents objectForKey:fileWithPath] andDictionary:newFile];
+                        [watchedFileContents setObject:newFile forKey:fileWithPath];
+                    }
                 }
             }
         }
@@ -113,6 +127,11 @@
     {
         [aDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 //            Log(@"Enumerating Key %@ and Value %@",key,obj);
+            for (NSString *blacklistedKey in blacklistedKeys)
+            {
+                if ([key hasPrefix:blacklistedKey])
+                    return;
+            }
             if (![[anotherDict objectForKey:key] isEqualTo:obj])
             {
                 Log(@"Key %@ changed. Was %@, is now %@", key, obj, [anotherDict objectForKey:key]);

@@ -21,10 +21,11 @@
 #import "UKKQueue.h"
 
 @interface Watcher : NSObject {
+    NSMutableArray *blacklistedFiles;
+    NSArray *blacklistedKeys;
     UKKQueue *fileWatcher;
     NSMutableDictionary *watchedFileListWithAttributes;
     NSMutableDictionary *watchedFileContents;
-    NSMutableArray *filesToDiff;
 @private
     
 }
